@@ -40,7 +40,7 @@ canvas{display:block;position:fixed;inset:0}
 #card .orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:2px 0 10px;color:#ff8fb8;opacity:0;transition:opacity 1.2s ease 1.6s}
 #card.show .orn{opacity:1}
 #card .orn i{flex:0 0 min(80px,18vw);height:1px;background:linear-gradient(90deg,transparent,#f2c46f,transparent)}
-#card .q.wish{min-height:4.4em;display:flex;align-items:center;justify-content:center;max-width:36ch;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(1.05rem,3.9vw,1.35rem);line-height:1.4;color:#fff4f8;text-shadow:0 1px 8px rgba(0,0,0,.6);transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+#card .q.wish{min-height:6.6em;display:flex;align-items:center;justify-content:center;max-width:36ch;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(1.05rem,3.9vw,1.35rem);line-height:1.4;color:#fff4f8;text-shadow:0 1px 8px rgba(0,0,0,.6);transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
 #card.show .q.wish{opacity:0}
 #card.show .q.wish.in{opacity:1;transform:none}
 #shade{position:fixed;left:0;right:0;bottom:0;height:64vh;z-index:3;pointer-events:none;opacity:0;transition:opacity 2.2s ease;background:linear-gradient(to top,rgba(14,2,20,.85),rgba(14,2,20,.45) 55%,transparent)}
@@ -66,7 +66,7 @@ body.party #shade{opacity:1}
   <h2>¡Feliz cumpleaños!</h2>
   <div class="orn"><i></i><span>✦ ♥ ✦</span><i></i></div>
   <p class="q wish"></p>
-  <p class="from">Te desea <b>Fernando Ortiz</b> <span class="heart">♥</span></p>
+  <p class="from">Te desea <b>Fernando</b> <span class="heart">♥</span></p>
   <button id="again">Volver a verlo</button>
 </div>
 
@@ -463,8 +463,8 @@ const bunt = new THREE.Group(); bunt.visible = false; scene.add(bunt);
   const tg = new THREE.ShapeGeometry(tri), bc = [0xe0314b, 0xf3cf7a, 0xf2829f, 0xffffff, 0xd9a6ff, 0x5fa8ff];
   for (let i = 1; i < 18; i++) { const m = new THREE.Mesh(tg, new THREE.MeshStandardMaterial({ color: bc[i % 6], roughness: .6, side: THREE.DoubleSide })); m.position.copy(cat(i / 18)); m.rotation.z = Math.sin(i) * .1; bunt.add(m); } }
 
-/* ---------- música (music.mp3: del segundo 0.6 al minuto 1) ---------- */
-const MUSIC_START = .6, MUSIC_END = 60;
+/* ---------- música (music.mp3: del segundo 0.6 al minuto 1:30) ---------- */
+const MUSIC_START = .6, MUSIC_END = 90;
 const audio = new Audio('music.mp3'); audio.preload = 'auto'; let musicOn = false;
 function playMusic() {
   const seek = () => { try { audio.currentTime = MUSIC_START; } catch (e) {} };
@@ -529,19 +529,26 @@ function adapt(dt, T) {
   STEPS[tier++](); cool = 2;
 }
 const WISHES = [
-  'Que la vida te encuentre despierta, pero sin perder la capacidad de asombro.',
+  'Que Dios te bendiga hoy y todos los días de tu vida.',
+  'Que Dios te cuide siempre, te guarde de todo mal y te llene de paz.',
+  'Que sigas cumpliendo muchos, muchos años más, siempre con salud y alegría.',
   'Hoy el mundo es un poquito más bonito porque existes.',
   'Que cada sueño tuyo encuentre su camino y florezca.',
   'Te deseo risas sin medida, abrazos que abriguen y paz en el corazón.',
+  'Que nunca te falte amor, ni gente buena a tu lado, ni una razón para sonreír.',
+  'Que Dios abra puertas que nadie pueda cerrar y cierre las que no te convienen.',
   'Mereces todo lo bueno que la vida guarda para ti.',
-  'Que este nuevo año te llene de amor, salud y momentos inolvidables.',
-  'Gracias por ser tú. Nunca dejes de brillar.'
+  'Que este nuevo año te traiga salud, prosperidad y momentos inolvidables.',
+  'Que tu fe sea firme, tu corazón tranquilo y tu camino siempre iluminado.',
+  'Que la vida te sorprenda con cosas hermosas que ni siquiera te atreviste a pedir.',
+  'Gracias por ser como eres. Nunca dejes de brillar.',
+  'Que Dios te bendiga, te cuide siempre y te regale muchísimos cumpleaños más. 🎂'
 ];
 function startWishes() {
   document.body.classList.add('party');
   const q = card.querySelector('.wish'); let i = 0;
   const next = () => { q.classList.remove('in'); setTimeout(() => { q.textContent = WISHES[i++ % WISHES.length]; q.classList.add('in'); }, 700); };
-  setTimeout(() => { next(); setInterval(next, 5200); }, 2400);
+  setTimeout(() => { next(); setInterval(next, 6500); }, 2400);
 }
 
 /* ---------- lógica ---------- */
